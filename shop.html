@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRElevate - Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.jpeg.png" alt="HRElevate Logo">
+                <div class="logo-text">HRElevate</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="courses.html">Cursussen</a></li>
+                    <li><a href="consultancy.html">Advies</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">Over Ons</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: var(--space-xl) 0;">
+        <div class="container hero-content">
+            <h1>Professionele HR-Producten</h1>
+            <p>Ontdek onze collectie hoogwaardige e-books, presentaties en templates voor HR-professionals.</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>Onze Producten</h2>
+                <p>Bekijk ons aanbod van zorgvuldig samengestelde HR-producten, ontwikkeld door experts in het veld.</p>
+            </div>
+
+            <div class="mb-4">
+                <div class="card-meta" style="justify-content: center; margin-bottom: var(--space-xl);">
+                    <a href="#" class="card-category">Alle Producten</a>
+                    <a href="#" class="card-category">E-books</a>
+                    <a href="#" class="card-category">Presentaties</a>
+                    <a href="#" class="card-category">Templates</a>
+                    <a href="#" class="card-category">Toolkits</a>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card" data-id="ebook-leiderschap">
+                    <img src="https://via.placeholder.com/300x200/2A3B4D/FFFFFF?text=E-book" alt="E-book cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">E-book</span>
+                            <span class="card-price">€49,95</span>
+                        </div>
+                        <h3>Leiderschap in de 21e eeuw</h3>
+                        <p>Een praktische gids voor moderne leiders met concrete handvatten voor effectief leiderschap in de huidige tijd.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="presentatie-hr-strategieen">
+                    <img src="https://via.placeholder.com/300x200/2E5E4E/FFFFFF?text=Presentatie" alt="Presentatie cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">Presentatie</span>
+                            <span class="card-price">€39,95</span>
+                        </div>
+                        <h3>Effectieve HR-Strategieën</h3>
+                        <p>Een professionele presentatie over de nieuwste HR-trends en strategieën voor optimale personeelsontwikkeling.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="template-functieomschrijving">
+                    <img src="https://via.placeholder.com/300x200/4A4A4A/FFFFFF?text=Template" alt="Template cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">Template</span>
+                            <span class="card-price">€29,95</span>
+                        </div>
+                        <h3>Functieomschrijving Template</h3>
+                        <p>Een professioneel template voor het schrijven van duidelijke en effectieve functieomschrijvingen.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="ebook-hr-compliance">
+                    <img src="https://via.placeholder.com/300x200/2A3B4D/FFFFFF?text=E-book" alt="E-book cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">E-book</span>
+                            <span class="card-price">€54,95</span>
+                        </div>
+                        <h3>HR Compliance Handboek</h3>
+                        <p>Een uitgebreid handboek over HR-compliance met praktische richtlijnen en checklists voor HR-professionals.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="toolkit-onboarding">
+                    <img src="https://via.placeholder.com/300x200/2E5E4E/FFFFFF?text=Toolkit" alt="Toolkit cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">Toolkit</span>
+                            <span class="card-price">€79,95</span>
+                        </div>
+                        <h3>Onboarding Excellence Toolkit</h3>
+                        <p>Een complete toolkit voor het ontwikkelen en implementeren van een effectief onboarding-programma.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-id="template-performance-review">
+                    <img src="https://via.placeholder.com/300x200/4A4A4A/FFFFFF?text=Template" alt="Template cover" class="card-image">
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-category">Template</span>
+                            <span class="card-price">€34,95</span>
+                        </div>
+                        <h3>Performance Review Templates</h3>
+                        <p>Een set van professionele templates voor effectieve performance reviews en ontwikkelingsgesprekken.</p>
+                        <a href="#" class="btn add-to-cart-btn"><i class="fas fa-shopping-cart"></i> Toevoegen aan winkelwagen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="container">
+            <h2>Waarom onze producten?</h2>
+            <div class="usp-grid mt-4">
+                <div class="usp">
+                    <div class="usp-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Ontwikkeld door experts</h2>
+                    <p>Al onze producten zijn ontwikkeld door ervaren HR-professionals met jarenlange praktijkervaring.</p>
+                </div>
+                <div class="usp">
+                    <div class="usp-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h2>Direct toepasbaar</h2>
+                    <p>Praktische tools en kennis die u direct kunt toepassen in uw dagelijkse HR-praktijk.</p>
+                </div>
+                <div class="usp">
+                    <div class="usp-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h2>Regelmatige updates</h2>
+                    <p>Onze producten worden regelmatig bijgewerkt om te voldoen aan de nieuwste inzichten en regelgeving.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>HRElevate</h3>
+                    <p>Professionele HR-oplossingen voor moderne organisaties.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Producten</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">E-books</a></li>
+                        <li><a href="shop.html">Templates</a></li>
+                        <li><a href="shop.html">Presentaties</a></li>
+                        <li><a href="courses.html">Cursussen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="consultancy.html">HR Audits</a></li>
+                        <li><a href="consultancy.html">Strategisch Advies</a></li>
+                        <li><a href="consultancy.html">Teamtrainingen</a></li>
+                        <li><a href="consultancy.html">Coaching</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@hrelevate.nl</li>
+                        <li><i class="fas fa-phone"></i> +31 (0)20 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amsterdam, Nederland</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/cart.js"></script>
+</body>
+</html>

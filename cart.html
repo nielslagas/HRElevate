@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRElevate - Winkelwagen</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.jpeg.png" alt="HRElevate Logo">
+                <div class="logo-text">HRElevate</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="courses.html">Cursussen</a></li>
+                    <li><a href="consultancy.html">Advies</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">Over Ons</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-icon active">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: var(--space-xl) 0;">
+        <div class="container hero-content">
+            <h1>Winkelwagen</h1>
+            <p>Bekijk en beheer je geselecteerde producten.</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="cart-container">
+                <h2 class="cart-title">Je winkelwagen</h2>
+                
+                <div id="shopping-cart">
+                    <!-- Cart items will be dynamically inserted here -->
+                    <p>Je winkelwagen is leeg.</p>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span>Totaal:</span>
+                        <span id="cart-total">€0.00</span>
+                    </div>
+                    
+                    <button id="checkout-button" class="btn btn-primary checkout-btn" onclick="cart.checkout()" style="display: none;">
+                        <i class="fas fa-lock"></i> Afrekenen
+                    </button>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="shop.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Terug naar de shop
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>HRElevate</h3>
+                    <p>Professionele HR-oplossingen voor moderne organisaties.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Producten</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">E-books</a></li>
+                        <li><a href="shop.html">Templates</a></li>
+                        <li><a href="shop.html">Presentaties</a></li>
+                        <li><a href="courses.html">Cursussen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="consultancy.html">HR Audits</a></li>
+                        <li><a href="consultancy.html">Strategisch Advies</a></li>
+                        <li><a href="consultancy.html">Teamtrainingen</a></li>
+                        <li><a href="consultancy.html">Coaching</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@hrelevate.nl</li>
+                        <li><i class="fas fa-phone"></i> +31 (0)20 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amsterdam, Nederland</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+</body>
+</html>

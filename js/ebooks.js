@@ -1,0 +1,353 @@
+// E-books functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the e-book container
+    const ebookContainer = document.getElementById('ebook-content');
+    if (!ebookContainer) return;
+
+    // Get the e-book ID from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const ebookId = urlParams.get('id');
+
+    if (!ebookId) {
+        // If no e-book ID is provided, show a message
+        ebookContainer.innerHTML = '<div class="alert">Geen e-book geselecteerd.</div>';
+        return;
+    }
+
+    // Instead of using fetch, we'll use a simple mapping of e-book IDs to content
+    const ebookContent = getEbookContent(ebookId);
+    
+    if (ebookContent) {
+        // Convert markdown to HTML
+        const html = convertMarkdownToHTML(ebookContent);
+        ebookContainer.innerHTML = html;
+
+        // Add table of contents navigation
+        addTableOfContentsNavigation();
+    } else {
+        ebookContainer.innerHTML = `<div class="alert alert-error">E-book niet gevonden: ${ebookId}</div>`;
+    }
+});
+
+// Function to get e-book content based on ID
+function getEbookContent(ebookId) {
+    // This is a simple solution to avoid CORS issues when loading local files
+    // In a production environment, you would use a server to serve the files
+    const ebookMap = {
+        'leiderschap-21e-eeuw': `# Leiderschap in de 21e eeuw
+
+## Een praktische gids voor moderne leiders
+
+### Inhoudsopgave
+
+1. [Introductie](#introductie)
+2. [De veranderende werkomgeving](#de-veranderende-werkomgeving)
+3. [Kerncompetenties voor moderne leiders](#kerncompetenties-voor-moderne-leiders)
+4. [Praktische handvatten](#praktische-handvatten)
+5. [Casestudies](#casestudies)
+6. [Conclusie](#conclusie)
+
+## Introductie
+
+In dit e-book verkennen we de uitdagingen en kansen voor leiders in de 21e eeuw. De moderne werkomgeving vraagt om een nieuwe benadering van leiderschap, waarbij flexibiliteit, emotionele intelligentie en digitale vaardigheden centraal staan.
+
+## De veranderende werkomgeving
+
+De werkomgeving is drastisch veranderd in de afgelopen decennia:
+
+- **Digitale transformatie**: Technologie heeft de manier waarop we werken fundamenteel veranderd
+- **Globalisering**: Teams werken steeds vaker op afstand en over verschillende tijdzones
+- **Generatieverschillen**: Werkplekken huisvesten nu tot vijf verschillende generaties
+- **Verwachtingen van werknemers**: Meer focus op zingeving, balans en ontwikkeling
+
+## Kerncompetenties voor moderne leiders
+
+### 1. Adaptief vermogen
+
+Moderne leiders moeten snel kunnen schakelen tussen verschillende situaties en benaderingen. Dit vereist:
+
+- Openheid voor nieuwe ideeën
+- Bereidheid om te experimenteren
+- Comfort met ambiguïteit
+- Leren van fouten
+
+### 2. Emotionele intelligentie
+
+Het vermogen om emoties te herkennen en effectief te managen is essentieel:
+
+- Zelfbewustzijn
+- Zelfregulatie
+- Empathie
+- Sociale vaardigheden
+
+### 3. Digitale geletterdheid
+
+Leiders moeten de impact van technologie begrijpen:
+
+- Basiskennis van relevante technologieën
+- Data-gedreven besluitvorming
+- Cybersecurity-bewustzijn
+- Digitale communicatievaardigheden
+
+## Praktische handvatten
+
+### Dagelijkse reflectie
+
+Reserveer 10 minuten aan het begin of einde van elke dag voor reflectie:
+
+1. Wat ging er goed vandaag?
+2. Wat had beter gekund?
+3. Wat heb ik geleerd?
+4. Wat ga ik morgen anders doen?
+
+### Feedback-cultuur
+
+Creëer een omgeving waarin feedback wordt gewaardeerd:
+
+- Vraag regelmatig om feedback
+- Reageer constructief op feedback
+- Geef zelf specifieke en actionable feedback
+- Vier successen en leer van mislukkingen
+
+## Casestudies
+
+### Bedrijf A: Transformatie naar hybride werken
+
+*[Gedetailleerde casestudy over hoe een bedrijf succesvol de transitie naar hybride werken heeft gemaakt onder leiding van een adaptieve leider]*
+
+### Bedrijf B: Innovatie door inclusief leiderschap
+
+*[Gedetailleerde casestudy over hoe diverse teams tot betere innovatie leiden onder de juiste leiding]*
+
+## Conclusie
+
+Leiderschap in de 21e eeuw vraagt om een combinatie van tijdloze principes en nieuwe vaardigheden. Door te focussen op adaptief vermogen, emotionele intelligentie en digitale geletterdheid, kunnen leiders hun teams effectief door de complexiteit van de moderne werkomgeving navigeren.
+
+---
+
+© 2025 HRElevate. Alle rechten voorbehouden.`,
+        'hr-compliance-handboek': `# HR Compliance Handboek
+
+## Een uitgebreide gids voor HR-professionals
+
+### Inhoudsopgave
+
+1. [Introductie](#introductie)
+2. [Wettelijke kaders](#wettelijke-kaders)
+3. [Personeelsdossiers](#personeelsdossiers)
+4. [Werving en selectie](#werving-en-selectie)
+5. [Arbeidsvoorwaarden](#arbeidsvoorwaarden)
+6. [Privacy en gegevensbescherming](#privacy-en-gegevensbescherming)
+7. [Checklists en templates](#checklists-en-templates)
+
+## Introductie
+
+Dit handboek biedt HR-professionals een praktische gids voor het navigeren door de complexe wereld van HR-compliance. Met toenemende regelgeving en hogere verwachtingen van werknemers is het essentieel dat HR-afdelingen up-to-date blijven met de laatste vereisten.
+
+## Wettelijke kaders
+
+### Arbeidsrecht
+
+De basis van HR-compliance ligt in het arbeidsrecht:
+
+- **Arbeidsovereenkomsten**: Typen, vereisten en beperkingen
+- **Arbeidstijdenwet**: Werktijden, rusttijden en overwerk
+- **Wet Arbeid en Zorg**: Verlofrechten en -regelingen
+- **Wet Werk en Zekerheid**: Ontslagrecht en transitievergoedingen
+
+### Gelijke behandeling
+
+Wetgeving rondom gelijke behandeling omvat:
+
+- **Algemene Wet Gelijke Behandeling**: Verbod op discriminatie
+- **Wet Gelijke Behandeling Mannen en Vrouwen**: Gelijke beloning en kansen
+- **Wet Gelijke Behandeling op grond van Handicap of Chronische Ziekte**
+- **Wet Gelijke Behandeling op grond van Leeftijd bij Arbeid**
+
+## Personeelsdossiers
+
+### Vereiste documentatie
+
+Elk personeelsdossier moet minimaal bevatten:
+
+- Getekende arbeidsovereenkomst
+- Kopie identiteitsbewijs
+- Loonbelastingverklaring
+- Functieomschrijving
+- Opleidingsgegevens en certificaten
+- Beoordelingsverslagen
+
+### Bewaartermijnen
+
+Verschillende documenten hebben verschillende bewaartermijnen:
+
+| Document | Bewaartermijn |
+|----------|---------------|
+| Salarisadministratie | 7 jaar |
+| Kopie ID-bewijs | 5 jaar na uitdiensttreding |
+| Sollicitatiegegevens | 4 weken (zonder toestemming) |
+| Ziekmeldingen | 2 jaar |
+
+## Werving en selectie
+
+### Discriminatievrije werving
+
+Richtlijnen voor discriminatievrije werving:
+
+- Neutrale functieomschrijvingen
+- Objectieve selectiecriteria
+- Gestructureerde interviews
+- Diverse selectiecommissies
+
+### Screening en referentiechecks
+
+Juridische kaders voor screening:
+
+- Proportionaliteit en relevantie
+- Transparantie naar kandidaten
+- Toestemming voor referentiechecks
+- Verwerking van screeningsresultaten
+
+## Arbeidsvoorwaarden
+
+### Primaire arbeidsvoorwaarden
+
+Wettelijke vereisten voor:
+
+- Minimumloon
+- Vakantiedagen en -geld
+- Pensioenregelingen
+- Arbeidsongeschiktheidsverzekeringen
+
+### Secundaire arbeidsvoorwaarden
+
+Compliance-aspecten van:
+
+- Leaseauto's en mobiliteitsregelingen
+- Thuiswerkvergoedingen
+- Opleidingsbudgetten
+- Bonusregelingen
+
+## Privacy en gegevensbescherming
+
+### AVG/GDPR-compliance
+
+Kernprincipes van de AVG voor HR:
+
+- Rechtmatigheid, behoorlijkheid en transparantie
+- Doelbinding
+- Minimale gegevensverwerking
+- Juistheid
+- Opslagbeperking
+- Integriteit en vertrouwelijkheid
+- Verantwoordingsplicht
+
+### Praktische implementatie
+
+Stappen voor AVG-implementatie in HR:
+
+1. Data-inventarisatie
+2. Privacy-beleid opstellen
+3. Verwerkersovereenkomsten
+4. Rechten van betrokkenen waarborgen
+5. Datalekprocedures implementeren
+
+## Checklists en templates
+
+### Onboarding compliance checklist
+
+- [ ] Arbeidsovereenkomst getekend
+- [ ] ID-check uitgevoerd
+- [ ] Loonbelastingverklaring ingevuld
+- [ ] AVG-verklaring ondertekend
+- [ ] Bedrijfsreglement overhandigd
+- [ ] Geheimhoudingsverklaring getekend
+
+### Jaarlijkse compliance audit
+
+- [ ] Personeelsdossiers compleet
+- [ ] Verlofregistratie bijgewerkt
+- [ ] Functioneringsgesprekken uitgevoerd
+- [ ] Salarisschalen gecontroleerd op gelijke beloning
+- [ ] Privacybeleid geëvalueerd
+- [ ] Werknemershandboek geactualiseerd
+
+---
+
+© 2025 HRElevate. Alle rechten voorbehouden.`
+    };
+    
+    return ebookMap[ebookId] || null;
+}
+
+// Simple markdown to HTML converter
+function convertMarkdownToHTML(markdown) {
+    // This is a very basic markdown converter
+    // For a production site, you would use a proper markdown library like marked.js
+
+    let html = markdown;
+
+    // Convert headers
+    html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+    html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+    html = html.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+    html = html.replace(/^#### (.*$)/gm, '<h4>$1</h4>');
+    html = html.replace(/^##### (.*$)/gm, '<h5>$1</h5>');
+    html = html.replace(/^###### (.*$)/gm, '<h6>$1</h6>');
+
+    // Convert bold and italic
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+    // Convert links
+    html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+    // Convert lists
+    html = html.replace(/^\- (.*$)/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n)+/g, '<ul>$&</ul>');
+    
+    html = html.replace(/^\d+\. (.*$)/gm, '<li>$1</li>');
+    html = html.replace(/(<li>.*<\/li>\n)+/g, '<ol>$&</ol>');
+
+    // Convert paragraphs
+    html = html.replace(/^(?!<[a-z])(.*$)/gm, '<p>$1</p>');
+    
+    // Convert tables
+    html = html.replace(/\|(.+)\|/g, '<tr><td>$1</td></tr>');
+    html = html.replace(/<tr><td>(.+)<\/td><\/tr>/g, function(match, p1) {
+        return '<tr><td>' + p1.replace(/\|/g, '</td><td>') + '</td></tr>';
+    });
+    html = html.replace(/(<tr>.+?<\/tr>\n)+/g, '<table>$&</table>');
+    
+    // Fix empty paragraphs
+    html = html.replace(/<p><\/p>/g, '');
+
+    // Add IDs to headers for navigation
+    html = html.replace(/<h([1-6])>(.*?)<\/h\1>/g, function(match, level, title) {
+        const id = title.toLowerCase().replace(/[^\w]+/g, '-');
+        return `<h${level} id="${id}">${title}</h${level}>`;
+    });
+
+    return html;
+}
+
+// Add table of contents navigation
+function addTableOfContentsNavigation() {
+    const headers = document.querySelectorAll('#ebook-content h1, #ebook-content h2, #ebook-content h3');
+    const toc = document.getElementById('ebook-toc');
+    
+    if (!toc || headers.length === 0) return;
+    
+    let tocHTML = '<ul class="toc-list">';
+    
+    headers.forEach(header => {
+        const level = parseInt(header.tagName.substring(1));
+        const title = header.textContent;
+        const id = header.id;
+        
+        tocHTML += `<li class="toc-level-${level}"><a href="#${id}">${title}</a></li>`;
+    });
+    
+    tocHTML += '</ul>';
+    toc.innerHTML = tocHTML;
+}

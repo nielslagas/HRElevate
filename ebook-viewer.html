@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRElevate - E-book Viewer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/ebooks.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.jpeg.png" alt="HRElevate Logo">
+                <div class="logo-text">HRElevate</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="courses.html">Cursussen</a></li>
+                    <li><a href="consultancy.html">Advies</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">Over Ons</a></li>
+                    <li>
+                        <a href="cart.html" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="padding: var(--space-xl) 0;">
+        <div class="container hero-content">
+            <h1>E-book Viewer</h1>
+            <p>Lees uw gekochte e-books online of download ze voor offline gebruik.</p>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="ebook-container">
+                <aside class="ebook-sidebar">
+                    <h3 class="toc-title">Inhoudsopgave</h3>
+                    <div id="ebook-toc">
+                        <!-- Table of contents will be dynamically inserted here -->
+                        <p>Laden...</p>
+                    </div>
+                </aside>
+                
+                <main class="ebook-main">
+                    <div id="ebook-content" class="ebook-content">
+                        <!-- E-book content will be dynamically inserted here -->
+                        <p>E-book wordt geladen...</p>
+                    </div>
+                    
+                    <div class="ebook-meta">
+                        <p>&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
+                    </div>
+                    
+                    <div class="ebook-actions">
+                        <a href="javascript:window.print();" class="btn btn-outline">
+                            <i class="fas fa-print"></i> Afdrukken
+                        </a>
+                        <a href="#" class="btn">
+                            <i class="fas fa-download"></i> Downloaden als PDF
+                        </a>
+                    </div>
+                </main>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="shop.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Terug naar de shop
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>HRElevate</h3>
+                    <p>Professionele HR-oplossingen voor moderne organisaties.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Producten</h3>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">E-books</a></li>
+                        <li><a href="shop.html">Templates</a></li>
+                        <li><a href="shop.html">Presentaties</a></li>
+                        <li><a href="courses.html">Cursussen</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="consultancy.html">HR Audits</a></li>
+                        <li><a href="consultancy.html">Strategisch Advies</a></li>
+                        <li><a href="consultancy.html">Teamtrainingen</a></li>
+                        <li><a href="consultancy.html">Coaching</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> info@hrelevate.nl</li>
+                        <li><i class="fas fa-phone"></i> +31 (0)20 123 4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amsterdam, Nederland</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cart.js"></script>
+    <script src="js/ebooks.js"></script>
+</body>
+</html>
