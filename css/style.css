@@ -237,6 +237,32 @@ nav ul li a.active {
     z-index: 2;
 }
 
+/* Hero Stats */
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin: var(--space-xl) 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
 .hero h1 {
     font-size: 3rem;
     margin-bottom: var(--space-lg);
@@ -569,6 +595,113 @@ textarea.form-control {
     resize: vertical;
 }
 
+/* Featured E-book Section */
+.featured-ebook-content {
+    display: flex;
+    gap: var(--space-xl);
+    background-color: var(--card-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-top: var(--space-xl);
+}
+
+.featured-ebook-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-ebook-info {
+    flex: 2;
+    padding: var(--space-xl);
+}
+
+.featured-ebook-info h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: var(--space-sm);
+}
+
+.featured-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: var(--space-md);
+}
+
+.featured-benefits {
+    list-style: none;
+    margin: var(--space-lg) 0;
+    padding: 0;
+}
+
+.featured-benefits li {
+    margin-bottom: var(--space-sm);
+    display: flex;
+    align-items: center;
+}
+
+.featured-benefits li i {
+    color: var(--accent-color);
+    margin-right: var(--space-sm);
+}
+
+.featured-actions {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: var(--background-alt);
+}
+
+.newsletter-container {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+    background-color: var(--card-background);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-xl);
+}
+
+.newsletter-content {
+    flex: 1;
+}
+
+.newsletter-content h2 {
+    margin-bottom: var(--space-md);
+    color: var(--primary-color);
+}
+
+.newsletter-form {
+    flex: 1;
+}
+
+.newsletter-form form {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.newsletter-form .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.newsletter-privacy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     h1 {
@@ -583,6 +716,32 @@ textarea.form-control {
         font-size: 2.2rem;
     }
     
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .featured-ebook-content {
+        flex-direction: column;
+    }
+    
+    .featured-ebook-image {
+        min-width: auto;
+    }
+    
+    .featured-actions {
+        flex-direction: column;
+    }
+    
+    .newsletter-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .newsletter-form form {
+        flex-direction: column;
+    }
+    
     .header-container {
         flex-direction: column;
     }
@@ -591,10 +750,54 @@ textarea.form-control {
         margin-top: var(--space-md);
         flex-wrap: wrap;
         justify-content: center;
+        gap: var(--space-sm);
+    }
+    
+    nav ul li {
+        width: calc(50% - var(--space-sm));
+        text-align: center;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: var(--space-sm);
     }
     
     .usp-grid, .product-grid, .course-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .hero-cta {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .partner-logos {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .partner-logo {
+        margin-bottom: var(--space-md);
+    }
+    
+    .testimonial-card {
+        padding: var(--space-md);
     }
 }
 

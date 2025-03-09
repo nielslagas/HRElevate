@@ -14,25 +14,126 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Instead of using fetch, we'll use a simple mapping of e-book IDs to content
-    const ebookContent = getEbookContent(ebookId);
-    
-    if (ebookContent) {
-        // Convert markdown to HTML
-        const html = convertMarkdownToHTML(ebookContent);
-        ebookContainer.innerHTML = html;
+    // Show loading indicator
+    ebookContainer.innerHTML = `
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>E-book wordt geladen...</p>
+        </div>
+    `;
 
-        // Add table of contents navigation
-        addTableOfContentsNavigation();
-    } else {
-        ebookContainer.innerHTML = `<div class="alert alert-error">E-book niet gevonden: ${ebookId}</div>`;
-    }
+    // Add loading spinner styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .loading-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--accent-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Simulate loading delay for better UX
+    setTimeout(() => {
+        // Instead of using fetch, we'll use a simple mapping of e-book IDs to content
+        const ebookContent = getEbookContent(ebookId);
+        
+        if (ebookContent) {
+            // Convert markdown to HTML
+            const html = convertMarkdownToHTML(ebookContent);
+            ebookContainer.innerHTML = html;
+
+            // Add table of contents navigation
+            addTableOfContentsNavigation();
+            
+            // Add reading progress indicator
+            addReadingProgressIndicator();
+            
+            // Add smooth scrolling for anchor links
+            addSmoothScrolling();
+        } else {
+            ebookContainer.innerHTML = `<div class="alert alert-error">E-book niet gevonden: ${ebookId}</div>`;
+        }
+    }, 800);
 });
+
+// Add reading progress indicator
+function addReadingProgressIndicator() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress';
+    document.body.appendChild(progressBar);
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: var(--accent-color);
+            z-index: 1000;
+            transition: width 0.2s;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    window.addEventListener('scroll', () => {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight - windowHeight;
+        const scrollTop = window.scrollY;
+        const progress = (scrollTop / documentHeight) * 100;
+        progressBar.style.width = `${progress}%`;
+    });
+}
+
+// Add smooth scrolling for anchor links
+function addSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL without page reload
+                history.pushState(null, null, `#${targetId}`);
+            }
+        });
+    });
+}
 
 // Function to get e-book content based on ID
 function getEbookContent(ebookId) {
-    // This is a simple solution to avoid CORS issues when loading local files
-    // In a production environment, you would use a server to serve the files
+    // First try to load from markdown files if available
+    try {
+        // Check if we're in a development environment where we can access local files
+        const markdownPath = `ebooks/markdown/${ebookId}.md`;
+        
+        // For production, we'd use a server-side API to fetch the content
+        // But for now, we'll use a fallback map of content
+    } catch (error) {
+        console.log("Using fallback content map");
+    }
+    
+    // Fallback content map
     const ebookMap = {
         'medewerkerparticipatie': `# Medewerkerparticipatie
 
@@ -444,10 +545,48 @@ Stappen voor AVG-implementatie in HR:
     return ebookMap[ebookId] || null;
 }
 
-// Simple markdown to HTML converter
+// Enhanced markdown to HTML converter
 function convertMarkdownToHTML(markdown) {
-    // This is a very basic markdown converter
-    // For a production site, you would use a proper markdown library like marked.js
+    // In a production environment, we would use a proper markdown library like marked.js
+    // This is an enhanced but still basic converter
+    
+    // Add syntax highlighting styles
+    const style = document.createElement('style');
+    style.textContent = `
+        pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        blockquote {
+            border-left: 4px solid #2E5E4E;
+            padding-left: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    `;
+    document.head.appendChild(style);
 
     let html = markdown;
 
@@ -495,7 +634,7 @@ function convertMarkdownToHTML(markdown) {
     return html;
 }
 
-// Add table of contents navigation
+// Enhanced table of contents navigation with active section highlighting
 function addTableOfContentsNavigation() {
     const headers = document.querySelectorAll('#ebook-content h1, #ebook-content h2, #ebook-content h3');
     const toc = document.getElementById('ebook-toc');
@@ -509,9 +648,140 @@ function addTableOfContentsNavigation() {
         const title = header.textContent;
         const id = header.id;
         
-        tocHTML += `<li class="toc-level-${level}"><a href="#${id}">${title}</a></li>`;
+        tocHTML += `<li class="toc-level-${level}"><a href="#${id}" data-section="${id}">${title}</a></li>`;
     });
     
     tocHTML += '</ul>';
     toc.innerHTML = tocHTML;
+    
+    // Add active section highlighting
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const headerPositions = Array.from(headers).map(header => {
+        return {
+            id: header.id,
+            top: header.offsetTop - 120 // Offset for header
+        };
+    });
+    
+    window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        
+        // Find the current section
+        let currentSection = headerPositions[0].id;
+        
+        for (let i = 0; i < headerPositions.length; i++) {
+            if (scrollPosition >= headerPositions[i].top) {
+                currentSection = headerPositions[i].id;
+            } else {
+                break;
+            }
+        }
+        
+        // Update active class
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // Add search functionality for e-book content
+    addEbookSearch();
+}
+
+// Add search functionality for e-book content
+function addEbookSearch() {
+    const searchContainer = document.createElement('div');
+    searchContainer.className = 'ebook-search';
+    searchContainer.innerHTML = `
+        <input type="text" id="ebook-search-input" placeholder="Zoeken in e-book...">
+        <button id="ebook-search-button"><i class="fas fa-search"></i></button>
+    `;
+    
+    const toc = document.getElementById('ebook-toc');
+    toc.parentNode.insertBefore(searchContainer, toc);
+    
+    const searchInput = document.getElementById('ebook-search-input');
+    const searchButton = document.getElementById('ebook-search-button');
+    
+    const performSearch = () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        if (searchTerm.length < 2) return;
+        
+        const content = document.getElementById('ebook-content');
+        const text = content.innerText;
+        const paragraphs = content.querySelectorAll('p, li, h1, h2, h3, h4, h5, h6');
+        
+        // Remove existing highlights
+        const existingHighlights = content.querySelectorAll('.search-highlight');
+        existingHighlights.forEach(el => {
+            const parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+            parent.normalize();
+        });
+        
+        if (searchTerm.length === 0) return;
+        
+        // Add new highlights
+        let matchFound = false;
+        paragraphs.forEach(paragraph => {
+            const html = paragraph.innerHTML;
+            if (html.toLowerCase().includes(searchTerm)) {
+                matchFound = true;
+                const newHtml = html.replace(
+                    new RegExp(searchTerm, 'gi'), 
+                    match => `<span class="search-highlight">${match}</span>`
+                );
+                paragraph.innerHTML = newHtml;
+                
+                // Scroll to first match
+                if (matchFound) {
+                    const firstMatch = content.querySelector('.search-highlight');
+                    if (firstMatch) {
+                        firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            }
+        });
+        
+        // Add search highlight style
+        const style = document.createElement('style');
+        style.textContent = `
+            .search-highlight {
+                background-color: #ffeb3b;
+                padding: 2px 0;
+            }
+            .ebook-search {
+                display: flex;
+                margin-bottom: 1rem;
+            }
+            #ebook-search-input {
+                flex: 1;
+                padding: 0.5rem;
+                border: 1px solid #ddd;
+                border-radius: 4px 0 0 4px;
+            }
+            #ebook-search-button {
+                background-color: var(--accent-color);
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 0 4px 4px 0;
+                cursor: pointer;
+            }
+            .toc-list a.active {
+                color: var(--accent-color);
+                font-weight: bold;
+            }
+        `;
+        document.head.appendChild(style);
+    };
+    
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', e => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
 }

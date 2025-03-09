@@ -59,18 +59,22 @@
                         <p>E-book wordt geladen...</p>
                     </div>
                     
-                    <div class="ebook-meta">
-                        <p>&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
-                    </div>
-                    
-                    <div class="ebook-actions">
-                        <a href="javascript:window.print();" class="btn btn-outline">
-                            <i class="fas fa-print"></i> Afdrukken
-                        </a>
-                        <a href="#" class="btn">
-                            <i class="fas fa-download"></i> Downloaden als PDF
-                        </a>
-                    </div>
+                <div class="ebook-meta">
+                    <p class="copyright">&copy; 2025 HRElevate. Alle rechten voorbehouden.</p>
+                    <p class="last-updated">Laatst bijgewerkt: <span id="last-updated-date">Maart 2025</span></p>
+                </div>
+                
+                <div class="ebook-actions">
+                    <a href="javascript:window.print();" class="btn btn-outline">
+                        <i class="fas fa-print"></i> Afdrukken
+                    </a>
+                    <a href="#" id="download-pdf" class="btn">
+                        <i class="fas fa-download"></i> Downloaden als PDF
+                    </a>
+                    <a href="#" id="share-ebook" class="btn btn-outline">
+                        <i class="fas fa-share-alt"></i> Delen
+                    </a>
+                </div>
                 </main>
             </div>
             
@@ -128,7 +132,72 @@
         </div>
     </footer>
 
+    <!-- Dark mode toggle button -->
+    <div class="dark-mode-toggle" id="dark-mode-toggle" title="Schakel tussen licht en donker thema">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <script src="js/cart.js"></script>
     <script src="js/ebooks.js"></script>
+    <script>
+        // Dark mode toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Check for saved theme preference or use system preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Toggle dark mode
+            darkModeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
+            
+            // PDF download functionality (simulated)
+            const downloadPdfBtn = document.getElementById('download-pdf');
+            downloadPdfBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('PDF wordt gegenereerd en gedownload...');
+                // In a real implementation, this would trigger a server-side PDF generation
+            });
+            
+            // Share functionality
+            const shareBtn = document.getElementById('share-ebook');
+            shareBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Check if Web Share API is supported
+                if (navigator.share) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const ebookId = urlParams.get('id');
+                    const title = document.querySelector('h1')?.textContent || 'HRElevate E-book';
+                    
+                    navigator.share({
+                        title: title,
+                        text: 'Bekijk dit interessante e-book van HRElevate',
+                        url: window.location.href
+                    })
+                    .catch(error => {
+                        console.log('Error sharing:', error);
+                    });
+                } else {
+                    // Fallback for browsers that don't support the Web Share API
+                    prompt('Kopieer deze link om het e-book te delen:', window.location.href);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
